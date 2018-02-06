@@ -1,6 +1,6 @@
 //Maya ASCII 2017ff05 scene
 //Name: Jim_Model_01.ma
-//Last modified: Tue, Feb 06, 2018 01:58:20 AM
+//Last modified: Tue, Feb 06, 2018 01:59:36 AM
 //Codeset: 1252
 requires maya "2017ff05";
 requires "stereoCamera" "10.0";
@@ -15,8 +15,8 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "C38A7B06-4B86-B20F-0C07-38BBC689ACA5";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 261.89935203320465 91.918019579853507 129.82028653010238 ;
-	setAttr ".r" -type "double3" 3.2616473043806984 -10378.600000010731 0 ;
+	setAttr ".t" -type "double3" 230.39581380728288 214.8272091284129 150.0301706477016 ;
+	setAttr ".r" -type "double3" -18.338352695618113 -10384.600000010729 5.6011089464457393e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "578716A4-49AD-0DB8-2057-6E9DA5CC09E7";
 	setAttr -k off ".v" no;
