@@ -78,10 +78,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Assets\animBehaves.cs" />
     <Compile Include="Assets\CompanionCube.cs" />
     <Compile Include="Assets\cubeDisplay.cs" />
     <Compile Include="Assets\IdleBehaves.cs" />
+=======
+    <Compile Include="Assets\Scripts\animBehaves.cs" />
+    <Compile Include="Assets\Scripts\CompanionCube.cs" />
+    <Compile Include="Assets\Scripts\cubeDisplay.cs" />
+    <Compile Include="Assets\Scripts\IdleBehaves.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
