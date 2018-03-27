@@ -1,6 +1,6 @@
 //Maya ASCII 2017ff05 scene
 //Name: ScaredScuba_Model.ma
-//Last modified: Tue, Mar 27, 2018 03:55:34 PM
+//Last modified: Tue, Mar 27, 2018 03:57:11 PM
 //Codeset: 1252
 requires maya "2017ff05";
 requires "stereoCamera" "10.0";
@@ -15,15 +15,15 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "E34849F4-6540-E9D3-6154-A3AE6851E63C";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.67892300517905158 12.250301671559935 12.575467794573047 ;
-	setAttr ".r" -type "double3" -24.338352015173893 -17263.400000001355 -4.1485961593050238e-016 ;
+	setAttr ".t" -type "double3" 13.021595352582073 10.218616862451649 21.352913807963759 ;
+	setAttr ".r" -type "double3" 4.4616479846505834 -17234.199999999189 2.8513284268021186e-016 ;
 	setAttr ".rp" -type "double3" 3.5527136788005009e-015 0 0 ;
 	setAttr ".rpt" -type "double3" 3.2314389341845297e-015 -7.817147633059193e-017 -2.6181459155494883e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "0C1F5BD4-2747-A283-21B1-41A02BC1721D";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 3.7420789312318212;
+	setAttr ".coi" 17.610989491192754;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
