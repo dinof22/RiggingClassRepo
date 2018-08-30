@@ -1,10 +1,11 @@
 //Maya ASCII 2018ff08 scene
-//Name: Rover.ma
-//Last modified: Thu, Aug 30, 2018 02:05:43 AM
+//Name: Rover.0004.ma
+//Last modified: Thu, Aug 30, 2018 03:02:47 AM
 //Codeset: 1252
 requires maya "2018ff08";
 requires "stereoCamera" "10.0";
 currentUnit -l meter -a degree -t film;
+fileInfo "exportedFrom" "C:/Users/Jake/Repositories/RiggingClassRepo/Maya_ProjectFiles/scenes/Prop/R/Rover/01-Model/WIP/Rover.ma";
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2018";
 fileInfo "version" "2018";
@@ -14,8 +15,8 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "DACA31D1-4E77-DF28-A881-0CB78CF3576F";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -50.419770290856569 10.35543721073698 -4.7386786001948575 ;
-	setAttr ".r" -type "double3" -13.538352735144306 283.79999999998222 -6.6668942666454918e-15 ;
+	setAttr ".t" -type "double3" -5.950533523586814 9.6500427176707788 -31.540919522457603 ;
+	setAttr ".r" -type "double3" -17.738352735143959 190.59999999998041 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "E9BBBFD6-4D0B-F895-F31C-1887F9CEA3AF";
 	setAttr -k off ".v" no;
@@ -23,7 +24,7 @@ createNode camera -s -n "perspShape" -p "persp";
 	setAttr ".ncp" 0.01;
 	setAttr ".fcp" 100;
 	setAttr ".fd" 0.05;
-	setAttr ".coi" 31.36274228090986;
+	setAttr ".coi" 13.095016079005363;
 	setAttr ".ow" 0.1;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
@@ -32816,4 +32817,4 @@ connectAttr "groupId4.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId5.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId6.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId7.msg" ":initialShadingGroup.gn" -na;
-// End of Rover.ma
+// End of Rover.0004.ma
