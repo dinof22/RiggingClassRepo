@@ -1,0 +1,33 @@
+//THing Forest!
+
+//Instructions: Select a thing and make a random forest with it
+
+//this declares the ThingForest tool...
+string $thingForest;
+
+//this prevents the duplication of the window...
+if (`window -ex $thingForest`){
+    deleteUI -window $thingForest;
+}
+
+string $thingForest = `window -t "Thing Forest" -s 0 -wh 300 225`;
+columnLayout -adj true;
+text -l "Instruction: Click the button to Align the Objects how you want";
+button -l "Make Forest!!" -w 100 -h 50 -c "makeForest";
+showWindow $thingForest;
+
+proc makeForest(){
+    int $i;
+
+int $totalThings = rand (10,40);
+//float $thingPlacementX = rand(-30,30);
+
+for ($i = 0; $i < $totalThings; $i++){
+    float $thingSize = rand(1,3);
+    duplicate -rr;
+    move -r (rand(-40,40)) (0) (rand(-40,40)) ;
+    rotate  (rand(-15,15)) (rand(0,360)) (0) ;
+    scale $thingSize $thingSize $thingSize ;
+}
+}
+
