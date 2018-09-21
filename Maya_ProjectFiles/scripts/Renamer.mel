@@ -1,0 +1,36 @@
+
+
+
+
+global proc ThingRenamer(string $prefix, int $totalDigits, string $suffix, int $startingNum){
+    string $thingsSelected[] = `ls -sl`;
+    int $selectionSize = size($thingsSelected);
+    
+    
+//    rename $thingsSelected "Test";
+    
+    for($i = 0; $i < $selectionSize; $i++){
+
+        string $numberPadding = "";
+
+        //size(string($startingNum))
+        int $numberPaddingSize = $totalDigits - size(string($startingNum));
+
+        for($ii = 0 ; $ii < $numberPaddingSize ; $ii++){
+        $numberPadding = $numberPadding + "0";
+        }
+
+
+        rename $thingsSelected[$i] ($prefix + "_" + $numberPadding + $startingNum + "_"+$suffix);
+        $startingNum++;
+
+        
+    }
+    
+}
+
+
+
+
+
+ThingRenamer("Bob", 5, "Jnt", 3);
