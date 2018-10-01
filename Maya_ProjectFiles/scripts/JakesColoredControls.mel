@@ -1,0 +1,57 @@
+//colored control creator
+
+global proc CreateCtrls(int $color)
+{
+	//items selected
+    string $selection[] = `ls -sl`;
+	
+	//var for the size of the selection
+	int $size = `size ($selection)`;
+	int $i;
+    
+    for ($i=0; $i<$size; $i++){
+	
+		//creates array for control curves and names it to the first item in the selection array
+        string $ctrls[] = `circle -name ($selection[$i]+"_Ctrl")`;
+		
+		//creates array for control group and adds _grp to the name;
+		string $ctrlGrp[] = `group -n ($ctrls[$i]+"_Grp") ($ctrls[$i])`;
+		
+		//assigns the current ctrl to a varable??
+        //string $ctrl = $ctrls[$i];
+		
+		//matches transform of ctrlGrp in selection to item in seleciton
+		matchTransform $ctrlGrp[$i] $selection[$i];
+        //ColorControls($ctrl, $color);
+		
+    }
+}
+
+
+global proc ColorControls(string $ctrl, int $color)
+{
+    // Sets color index of the control
+    
+    //define string array for shapes
+    string $shapes[];
+    
+    //find the shape node[s] of $ctrl
+    $shapes = `listRelatives -shapes $ctrl`;
+    
+    for ($shape in $shapes)
+    {
+        //check for nurbsCurve
+        if (`nodeType $shape` == "nurbsCurve")
+        {
+            //enable override on $shape
+            setAttr ($shape + ".overrideEnabled") 1;
+            
+            //set $shape color to $color
+            setAttr ($shape + ".overrideColor") $color;
+        } 
+        else 
+        {
+            warning("Selected object is not a curve.");
+        }
+    }
+}
