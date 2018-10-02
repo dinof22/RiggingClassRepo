@@ -36,8 +36,8 @@ global proc CreateCtrls(int $color)
 
 }
 
-
-global proc createSquareCtrl()
+//create diamond control
+global proc createDiamondCtrl(int $color)
 {
 		//items selected
 	string $selection[] = `ls -sl`;
@@ -56,7 +56,7 @@ global proc createSquareCtrl()
     for ($i=0; $i<$size; $i++){
 	
 		//creates array for control curves and names it to the first item in the selection array
-        string $tempCtrlArray[] = `nurbsSquare -name ($selection[$i]+"_Ctrl")`;
+        string $tempCtrlArray[] = createDiamondShape($selection[$i]);
 		$ctrls[$i] = $tempCtrlArray[0];
 		
 		//creates array for control group and adds _grp to the name;
@@ -72,7 +72,9 @@ global proc createSquareCtrl()
     }
 }
 
-global proc createFlowerCtrl()
+
+//create flower controls
+global proc createFlowerCtrl(int $color)
 {
 			//items selected
 	string $selection[] = `ls -sl`;
@@ -91,7 +93,7 @@ global proc createFlowerCtrl()
     for ($i=0; $i<$size; $i++){
 	
 		//creates array for control curves and names it to the first item in the selection array
-        string $tempCtrlArray[] = `createFlowerShape()`;
+        string $tempCtrlArray[] = createFlowerShape($selection[$i]);
 		$ctrls[$i] = $tempCtrlArray[0];
 		
 		//creates array for control group and adds _grp to the name;
@@ -137,7 +139,7 @@ global proc ColorControls(string $ctrl, int $color)
 }
 
 
-
+/*
 global proc string[] createFlowerShape(){
 
 string $Flower[] = `circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1`;
@@ -153,3 +155,35 @@ scale -ws -r -p 0cm 0cm 0cm -0.274738 -0.274738 -0.274738 ;
 
 return $Flower;
 }
+*/
+
+
+//create the flower shape
+global proc string[] createFlowerShape(string $nameOfCtrl){
+
+string $Flower[] = `circle -name ($nameOfCtrl +"_Ctrl") -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1`;
+select -tgl ($Flower[0] + ".cv[0]") ;
+select -tgl ($Flower[0] + ".cv[6]");
+select -tgl ($Flower[0] + ".cv[4]");
+select -tgl ($Flower[0] + ".cv[2]");
+scale -ws -r -p 0cm 0cm 0cm -0.4 -0.4 -0.4 ;
+
+return $Flower;
+}
+
+//create the diamond shape
+global proc string[] createDiamondShape(string $nameOfCtrl){
+
+string $Diamond[] = `circle -name ($nameOfCtrl +"_Ctrl") -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1`;
+select -tgl ($Diamond[0] + ".cv[0]") ;
+select -tgl ($Diamond[0] + ".cv[6]");
+select -tgl ($Diamond[0] + ".cv[4]");
+select -tgl ($Diamond[0] + ".cv[2]");
+scale -ws -r -p 0cm 0cm 0cm 3.7 3.7 3.7 ;
+select -cl  ;
+select -r $Diamond[0];
+scale -ws -r 0.45 0.45 0.45 ;
+DeleteHistory;
+return $Diamond;
+}
+
