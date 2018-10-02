@@ -37,6 +37,77 @@ global proc CreateCtrls(int $color)
 }
 
 
+global proc createSquareCtrl()
+{
+		//items selected
+	string $selection[] = `ls -sl`;
+	
+	//var for the size of the selection
+	int $size = `size ($selection)`;
+	int $i;
+	string $ctrls[];
+	
+	if ($size == 0)
+	{
+		$selection[0] = "Orphan";
+		$size = 1;
+	}
+    
+    for ($i=0; $i<$size; $i++){
+	
+		//creates array for control curves and names it to the first item in the selection array
+        string $tempCtrlArray[] = `nurbsSquare -name ($selection[$i]+"_Ctrl")`;
+		$ctrls[$i] = $tempCtrlArray[0];
+		
+		//creates array for control group and adds _grp to the name;
+		string $ctrlGrp = `group -n ($ctrls[$i]+"_Grp") ($ctrls[$i])`;
+		
+		
+		//matches transform of ctrlGrp in selection to item in seleciton
+		matchTransform $ctrlGrp $selection[$i];
+		
+		//colors controls
+        ColorControls($ctrls[$i], $color);
+		
+    }
+}
+
+global proc createFlowerCtrl()
+{
+			//items selected
+	string $selection[] = `ls -sl`;
+	
+	//var for the size of the selection
+	int $size = `size ($selection)`;
+	int $i;
+	string $ctrls[];
+	
+	if ($size == 0)
+	{
+		$selection[0] = "Orphan";
+		$size = 1;
+	}
+    
+    for ($i=0; $i<$size; $i++){
+	
+		//creates array for control curves and names it to the first item in the selection array
+        string $tempCtrlArray[] = `createFlowerShape()`;
+		$ctrls[$i] = $tempCtrlArray[0];
+		
+		//creates array for control group and adds _grp to the name;
+		string $ctrlGrp = `group -n ($ctrls[$i]+"_Grp") ($ctrls[$i])`;
+		
+		
+		//matches transform of ctrlGrp in selection to item in seleciton
+		matchTransform $ctrlGrp $selection[$i];
+		
+		//colors controls
+        ColorControls($ctrls[$i], $color);
+		
+    }
+}
+
+
 global proc ColorControls(string $ctrl, int $color)
 {
     // Sets color index of the control
@@ -63,4 +134,22 @@ global proc ColorControls(string $ctrl, int $color)
             warning("Selected object is not a curve.");
         }
     }
+}
+
+
+
+global proc string[] createFlowerShape(){
+
+string $Flower[] = `circle -c 0 0 0 -nr 0 1 0 -sw 360 -r 1 -d 3 -ut 0 -tol 0.01 -s 8 -ch 1`;
+select -r ($Flower[0] + ".cv[0]") ($Flower[0] + ".cv[6]") ;
+select -tgl ($Flower[0] + ".cv[4]") ;
+select -tgl ($Flower[0] + ".cv[2]") ($Flower[0] + ".cv[4]") ;
+select -cl  ;
+select -r ($Flower[0] + ".cv[2]") ;
+select -tgl ($Flower[0] + ".cv[4]")
+select -tgl ($Flower[0] + ".cv[6]")
+select -tgl ($Flower[0] + ".cv[0]") ;
+scale -ws -r -p 0cm 0cm 0cm -0.274738 -0.274738 -0.274738 ;
+
+return $Flower;
 }
