@@ -3,28 +3,37 @@
 global proc CreateCtrls(int $color)
 {
 	//items selected
-    string $selection[] = `ls -sl`;
+	string $selection[] = `ls -sl`;
 	
 	//var for the size of the selection
 	int $size = `size ($selection)`;
 	int $i;
+	string $ctrls[];
+	
+	if ($size == 0)
+	{
+		$selection[0] = "Orphan";
+		$size = 1;
+	}
     
     for ($i=0; $i<$size; $i++){
 	
 		//creates array for control curves and names it to the first item in the selection array
-        string $ctrls[] = `circle -name ($selection[$i]+"_Ctrl")`;
+        string $tempCtrlArray[] = `circle -name ($selection[$i]+"_Ctrl")`;
+		$ctrls[$i] = $tempCtrlArray[0];
 		
 		//creates array for control group and adds _grp to the name;
-		string $ctrlGrp[] = `group -n ($ctrls[$i]+"_Grp") ($ctrls[$i])`;
+		string $ctrlGrp = `group -n ($ctrls[$i]+"_Grp") ($ctrls[$i])`;
 		
-		//assigns the current ctrl to a varable??
-        //string $ctrl = $ctrls[$i];
 		
 		//matches transform of ctrlGrp in selection to item in seleciton
-		matchTransform $ctrlGrp[$i] $selection[$i];
-        //ColorControls($ctrl, $color);
+		matchTransform $ctrlGrp $selection[$i];
+		
+		//colors controls
+        ColorControls($ctrls[$i], $color);
 		
     }
+
 }
 
 
