@@ -1,6 +1,6 @@
 //Maya ASCII 2018ff08 scene
 //Name: PodRacerRed.ma
-//Last modified: Tue, Oct 09, 2018 09:05:01 AM
+//Last modified: Tue, Oct 09, 2018 09:21:31 AM
 //Codeset: 1252
 requires maya "2018ff08";
 requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" "mtoa" "3.0.0.2";
@@ -13428,15 +13428,15 @@ createNode mesh -n "ScaleTHingShape3" -p "ScaleTHing";
 createNode transform -s -n "persp";
 	rename -uid "BC34EC40-479E-811F-D195-B7BD617E6628";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -69.982485977597051 -2.4586879859456054 128.38879473698853 ;
-	setAttr ".r" -type "double3" 1.4616472701386716 -755.79999999992185 -6.1272819393849097e-17 ;
+	setAttr ".t" -type "double3" -89.160858434390562 -11.070891084050814 74.567001523240009 ;
+	setAttr ".r" -type "double3" 6.2616472701289849 -781.3999999997211 1.6610657924694351e-15 ;
 	setAttr ".rp" -type "double3" 8.8817841970012523e-16 0 0 ;
 	setAttr ".rpt" -type "double3" -2.9157068819553526e-16 -1.2325951644078309e-32 -6.5796665563686332e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "400EAE3E-4D2B-FDEB-5F7C-CC9CE06C3A2D";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 130.65350501387678;
+	setAttr ".coi" 109.51682943083995;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -72284,7 +72284,7 @@ createNode groupParts -n "groupParts5";
 	setAttr ".ihi" 0;
 	setAttr ".ic" -type "componentList" 6 "f[20:419]" "f[480:517]" "f[562:597]" "f[2580:3029]" "f[3134:3305]" "f[3806:3949]";
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "D1E09E91-40DA-D6F8-B764-C9AE0C91DCAC";
+	rename -uid "F5E70633-4BAB-86A2-D0C2-57A2652DF875";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
 	setAttr ".tgi[0].vl" -type "double2" -622.61902287839052 -389.28569881689037 ;
 	setAttr ".tgi[0].vh" -type "double2" 592.85711929911758 407.14284096445425 ;
