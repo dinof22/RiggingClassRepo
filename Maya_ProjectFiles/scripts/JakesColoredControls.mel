@@ -1,7 +1,49 @@
 //colored control creator
+global proc colorControlUI(){
 
-global proc CreateCtrls(int $color)
+    //renamer ui window
+    string $ccWindow = "colorControlWindow";
+    if(`window -exists $ccWindow` == true){
+        deleteUI -window $ccWindow;
+    }
+    $ccWindow = `window -title "Control Creator" -sizeable 0 $ccWindow`;
+
+
+    //column
+    string $ccColumn = `columnLayout -adjustableColumn 1 -columnAttach "both" 2 -parent $ccWindow`;
+    //buttons & Inputs 
+    string $Circle = `button -parent $ccColumn -label "Circle"`;
+	string $Diamond = `button -parent $ccColumn -label "Diamond"`;
+	string $Flower = `button -parent $ccColumn -label "Flower"`;
+	string $tempColor = `intFieldGrp -parent $ccColumn -label "Color Index:" -extraLabel "Enter number for a color value"`;
+
+    //button throws values into other function as paramaters
+    button -e -command ("CreateCtrls(\"" + $tempColor + "\")") $Circle;
+	button -e -command ("createDiamondCtrl(\"" + $tempColor + "\")") $Diamond;
+	button -e -command ("createFlowerCtrl(\"" + $tempColor + "\")") $Flower;
+
+    window -e -width 400 -height 125 $ccWindow;
+	showWindow($ccWindow);
+}
+
+
+
+
+
+/*
+global proc GetColorValue(string $btempColor){
+   int $color = `intFieldGrp -q -value1 $btempColor`;
+   ThingRenamer($prefix, $totalDigits, $suffix, $startingNum);
+}
+*/
+
+
+
+
+global proc CreateCtrls(string $btempColor)
 {
+	//gets color value
+	int $color = `intFieldGrp -q -value1 $btempColor`;
 	//items selected
 	string $selection[] = `ls -sl`;
 	
@@ -37,8 +79,10 @@ global proc CreateCtrls(int $color)
 }
 
 //create diamond control
-global proc createDiamondCtrl(int $color)
+global proc createDiamondCtrl(string $btempColor)
 {
+	//gets color value
+	int $color = `intFieldGrp -q -value1 $btempColor`;
 		//items selected
 	string $selection[] = `ls -sl`;
 	
@@ -74,8 +118,10 @@ global proc createDiamondCtrl(int $color)
 
 
 //create flower controls
-global proc createFlowerCtrl(int $color)
+global proc createFlowerCtrl(string $btempColor)
 {
+	//gets color value
+	int $color = `intFieldGrp -q -value1 $btempColor`;
 			//items selected
 	string $selection[] = `ls -sl`;
 	

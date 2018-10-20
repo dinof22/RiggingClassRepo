@@ -1,3 +1,5 @@
+global proc ThingGenerator(){
+
 //THing Forest!
 
 //Instructions: Select a thing and make a random forest with it
@@ -11,15 +13,20 @@ if (`window -ex $thingForest`){
     deleteUI -window $thingForest;
 }
 
-string $thingForest = `window -t "Thing Forest" -s 0 -wh 300 225`;
+string $thingForest = `window -t "Thing Generator" -s 0 -wh 300 225`;
 columnLayout -adj true;
 text -l "Instruction: Click the button to Align the Objects how you want";
-button -l "Make Forest!!" -w 100 -h 50 -c "intFieldValue";   ////makeForest(`intFieldValue(_totalThings)`,`intFieldValue(_randomRangeX)`,`intFieldValue(_randomRangeZ)`)
+button -l "Make Forest of Things!" -w 100 -h 50 -c "intFieldValue";   ////makeForest(`intFieldValue(_totalThings)`,`intFieldValue(_randomRangeX)`,`intFieldValue(_randomRangeZ)`)
 button -l "Randomize Size" -w 100 -h 50 -c "randomizeSize";
+text -l "Total Things";
 intField _totalThings;
+text -l "Random Range X";
 intField _randomRangeX;  //will be input into rand range for move x
+text -l "Random Range Z";
 intField _randomRangeZ;  //will be input into rand range for move z
 showWindow $thingForest; 
+
+}
 
 //int $totalThings = `intField -q -v _totalThings`;
 //int $randomRangeX = `intField -q -v _randomRangeX`;

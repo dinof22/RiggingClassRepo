@@ -1,0 +1,30 @@
+global proc JakesToolboxUI()
+{
+
+    source ThingForestV3.mel;
+    source Renamer.mel;
+    source JakesColoredControls.mel;
+    string $tbWindow = "Toolbox WIndow";
+    
+
+    //deletes window if its arleady created
+    if(`window -exists $tbWindow` == true){
+        deleteUI -window $tbWindow;
+    }
+
+    //creates a window
+    $tbWindow = `window -title "Jake's Toolbox" -sizeable 0 $tbWindow`;
+    string $tbColumn = `columnLayout -adjustableColumn 1 -columnAttach "both" 2 -parent $tbWindow`;
+    
+    //create buttons and fields
+    string $renamerBT = `button -parent $tbColumn -label "Thing Renamer"`;
+    string $randomGenBT = `button -parent $tbColumn -label "Thing Generator"`;
+    string $ControlCreatorBT = `button -parent $tbColumn -label "Control Creator"`;
+
+    button -e -command ("RenamerUI()") $renamerBT;
+    button -e -command ("ThingGenerator()") $randomGenBT;
+    button -e -command ("colorControlUI()") $ControlCreatorBT;
+
+    window -e -width 400 -height 125 $tbWindow;
+    showWindow($tbWindow);
+}

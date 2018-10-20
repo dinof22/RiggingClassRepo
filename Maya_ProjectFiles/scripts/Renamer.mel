@@ -1,5 +1,40 @@
 
+global proc RenamerUI(){
 
+    //renamer ui window
+    string $rnWindow = "RenamerWindow";
+    if(`window -exists $rnWindow` == true){
+        deleteUI -window $rnWindow;
+    }
+    $rnWindow = `window -title "Thing Renamer" -sizeable 0 $rnWindow`;
+
+
+    //column
+    string $rnColumn = `columnLayout -adjustableColumn 1 -columnAttach "both" 2 -parent $rnWindow`;
+    //buttons & Inputs
+    string $tempPrefix = `textFieldGrp -parent $rnColumn -label "Prefix:" -placeholderText "Enter Prefix Name"`;
+    string $tempSuffix = `textFieldGrp -parent $rnColumn -label "Suffix:" -placeholderText "Enter Suffix name"`;
+    string $tempTotalDigits = `intFieldGrp -parent $rnColumn -label "Total Padding:" -extraLabel "Enter desired total Digits for Padding"`;
+    string $tempStartingNum = `intFieldGrp -parent $rnColumn -label "Starting Number:" -extraLabel "Enter Number to start counting from"`;
+    string $RenameBT = `button -parent $rnColumn -label "Rename Things"`;
+
+    //button throws values into other function as paramaters
+    button -e -command ("GetVarValues(\"" + $tempTotalDigits + "\", \"" + $tempStartingNum + "\", \"" + $tempPrefix + "\", \"" + $tempSuffix + "\")") $RenameBT;
+
+    window -e -width 400 -height 125 $rnWindow;
+	showWindow($rnWindow);
+}
+
+
+global proc GetVarValues(string $btempTotalDigits, string $btempStartingNum, string $btempPrefix, string $btempSuffix){
+   // int $value = `intField -q -v $control`;
+   // return $value;
+   int $totalDigits = `intFieldGrp -q -value1 $btempTotalDigits`;
+   int $startingNum = `intFieldGrp -q -value1 $btempStartingNum`;
+   string $prefix = `textFieldGrp -q -text $btempPrefix`;
+   string $suffix = `textFieldGrp -q -text $btempSuffix`;
+   ThingRenamer($prefix, $totalDigits, $suffix, $startingNum);
+}
 
 
 global proc ThingRenamer(string $prefix, int $totalDigits, string $suffix, int $startingNum){
@@ -33,4 +68,4 @@ global proc ThingRenamer(string $prefix, int $totalDigits, string $suffix, int $
 
 
 
-ThingRenamer("Bob", 5, "Jnt", 3);
+//ThingRenamer("Bob", 5, "Jnt", 3);
