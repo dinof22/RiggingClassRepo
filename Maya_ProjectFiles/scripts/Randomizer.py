@@ -10,13 +10,13 @@ def createObjects(mode, numObjects=5):
         if mode == 'Cube':
             obj = cmds.polyCube()
         elif mode == 'Sphere':
-            obj = cmds.polySphere():
+            obj = cmds.polySphere()
         elif mode == 'Cylinder':
-            obj = cmds.polyCylinder():
+            obj = cmds.polyCylinder()
         elif mode == 'Sphere':
-            obj = cmds.polySphere():
+            obj = cmds.polySphere()
         elif mode == 'Cone':
-            obj = cmds.polyCone():
+            obj = cmds.polyCone()
         else: cmds.error("I dont know what to make")
 
         objList.append(obj[0])
