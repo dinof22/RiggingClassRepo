@@ -55,7 +55,7 @@ class RandomGeneeratorUI(baseWindow.Window):
 			cmds.duplicate(rr=True)
 			zMove = random.randrange(-randomRangeZ,randomRangeZ)
 			#print(zMove)
-			cmds.move(random.randrange(-randomRangeX,randomRangeX),0,zMove)
+			cmds.move(random.randrange(-randomRangeX,randomRangeX),0,zMove,r=True)
 			cmds.rotate((random.randrange(-15,15)),(random.randrange(0,360)),(0))
 			cmds.scale(thingSize,thingSize,thingSize)
 			

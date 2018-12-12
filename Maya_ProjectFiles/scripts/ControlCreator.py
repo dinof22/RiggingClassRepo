@@ -11,6 +11,7 @@ import baseWindow
 
 class ControlCreatorUI(baseWindow.Window):
 	#colored control creator
+	
 	def buildUI(self):
 		
 		# #renamer ui window
@@ -26,7 +27,7 @@ class ControlCreatorUI(baseWindow.Window):
 		#buttons & Inputs 
 		self.Circle = cmds.button(parent=self.ccColumn, label="Circle", command=lambda *args: self.CreateCtrls(self.tempColor,self.ctrlSize))
 		self.Diamond = cmds.button(parent=self.ccColumn, label="Diamond", command=lambda *args: self.createDiamondCtrl(self.tempColor,self.ctrlSize))
-		self.Flower = cmds.button(parent=self.ccColumn, label="Flower", command=lambda *args: self.createFlowerCtrl(self.tempColor,self.ctrlSize))
+		self.Flower = cmds.button(parent=self.ccColumn, label="Cube", command=lambda *args: self.createFlowerCtrl(self.tempColor,self.ctrlSize))
 		self.tempColor = cmds.intFieldGrp(parent=self.ccColumn,label="Color Index:",extraLabel="Enter number for a color value")
 		self.ctrlSize = cmds.floatSliderGrp(parent=self.ccColumn, label='Size', minValue=0, maxValue=10, field=1, value=1)
 
@@ -120,9 +121,9 @@ class ControlCreatorUI(baseWindow.Window):
 			#tempCtrlArray = circle -name (selection[i]+"_Ctrl")
 			print i
 
-			tempCtrlArray = cmds.curve(d=1, p=[(1,0,-1),(-1,0,-1),(-1,0,1),(1,0,1),(1,0,-1)], k=[0,1,2,3,4],name=(self.selection[i]+"_Ctrl"))
+			tempCtrlArray = cmds.curve(d=1, p=[(1,0,-1),(-1,0,-1),(-1,0,1),(1,0,1),(1,0,-1)],name=(self.selection[i]+"_Ctrl"), k=[0,1,2,3,4])
 			print tempCtrlArray
-			self.ctrls.append(tempCtrlArray[0])
+			self.ctrls.append(tempCtrlArray)
 			print self.ctrls[i]
 
 			cmds.scale(self.scale_val, self.scale_val, self.scale_val, self.ctrls[i], r=True)
@@ -136,10 +137,10 @@ class ControlCreatorUI(baseWindow.Window):
 			
 			#colors controls
 			self.ColorControls(self.ctrls[i], self.color)
-			
+
 		
 	#######################################################################cube Controls
-	def CreateCubeCtrl(self, btempColor,ctrlSize):
+	def createFlowerCtrl(self, btempColor,ctrlSize):
 
 		#gets color and scale value
 		self.color = cmds.intFieldGrp(btempColor, q=True, value=True)
@@ -165,9 +166,12 @@ class ControlCreatorUI(baseWindow.Window):
 			#tempCtrlArray = circle -name (selection[i]+"_Ctrl")
 			print i
 
-			tempCtrlArray = cmds.circle(c=[0,0,0], nr=[0,1,0], sw=360, r=1, d=3, ut=0, tol=.01, s=8, name=(self.selection[i]+"_Ctrl"), ch=True)
+			tempCtrlArray = cmds.curve(d=1, p=[(0.5,0.5,0.5),(-0.5,0.5,0.5),(-0.5,-0.5,0.5),(0.5,-0.5,0.5),(0.5,0.5,0.5),
+									(0.5,0.5,-0.5),(0.5,-0.5,-0.5),(0.5,-0.5,0.5),(0.5,-0.5,-0.5),(-0.5,-0.5,-0.5),
+									(-0.5,-0.5,0.5),(-0.5,0.5,0.5),(-0.5,0.5,-0.5),(-0.5,-0.5,-0.5),(-0.5,0.5,-0.5),
+									(0.5,0.5,-0.5)], name=(self.selection[i]+"_Ctrl"), k=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
 			print tempCtrlArray
-			self.ctrls.append(tempCtrlArray[0])
+			self.ctrls.append(tempCtrlArray)
 			print self.ctrls[i]
 
 			cmds.scale(self.scale_val, self.scale_val, self.scale_val, self.ctrls[i], r=True)
